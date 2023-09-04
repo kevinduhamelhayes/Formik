@@ -51,44 +51,65 @@ function App() {
           name="name"
           onChange={formik.handleChange}
           value={formik.values.name}
+          onBlur={formik.handleBlur}
           className="form-input"
         />
-        {formik.errors.name ? (
+        {formik.touched.name && formik.errors.name ? (
           <div className="error-message">{formik.errors.name}</div>
         ) : null}
       </div>
-      <br />
-      <label htmlFor="">apellido</label>
-      <input
-        type="text"
-        name="lastname"
-        onChange={formik.handleChange}
-        value={formik.values.lastname}
-        className="form-input"
-      />
-      <div className="error-message">{formik.errors.lastname ? <div>{formik.errors.lastname}</div> : null}</div>
-      <br />
-      <label htmlFor="">email</label>
-      <input
-        type="email"
-        name="email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-        className="form-input"
-      />
-      <div className="error-message">{formik.errors.email ? <div>{formik.errors.email}</div> : null}</div>
-      <br />
-      <label htmlFor="">password</label>
-      <input
-        type="password"
-        name="password"
-        onChange={formik.handleChange}
-        value={formik.values.password}
-        className="form-input"
-      />
-      <div className="error-message">{formik.errors.password ? <div>{formik.errors.password}</div> : null}</div>
-      <br />
-      <button type="submit">enviar</button>
+
+      <div className="form-group">
+        <label htmlFor="lastname">apellido</label>
+        <input
+          id="lastname"
+          type="text"
+          name="lastname"
+          onChange={formik.handleChange}
+          value={formik.values.lastname}
+          onBlur={formik.handleBlur}
+          className="form-input"
+        />
+        {formik.touched.lastname && formik.errors.lastname ? (
+          <div className="error-message">{formik.errors.lastname}</div>
+        ) : null}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="email">email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          onBlur={formik.handleBlur}
+          className="form-input"
+        />
+        {formik.touched.email && formik.errors.email ? (
+          <div className="error-message">{formik.errors.email}</div>
+        ) : null}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="password">password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          onBlur={formik.handleBlur}
+          className="form-input"
+        />
+        {formik.touched.password && formik.errors.password ? (
+          <div className="error-message">{formik.errors.password}</div>
+        ) : null}
+      </div>
+
+      <button className="submit-btn" type="submit">
+        enviar
+      </button>
     </form>
   )
 }
