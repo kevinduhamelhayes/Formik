@@ -1,5 +1,7 @@
 import "./index.css"
-import { useFormik } from "formik"
+import { Formik, Form, Field, ErrorMessage } from "formik"
+
+//formik con componentes
 
 const validate = (values) => {
   const errors = {}
@@ -28,89 +30,53 @@ const validate = (values) => {
 }
 
 function App() {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      lastname: "",
-      email: "",
-      password: "",
-    },
-    validate,
-    onSubmit: (values) => {
-      console.log(values)
-    },
-  })
-
   return (
-    <form className="form-container" onSubmit={formik.handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="name">nombre</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          onChange={formik.handleChange}
-          value={formik.values.name}
-          onBlur={formik.handleBlur}
-          className="form-input"
-        />
-        {formik.touched.name && formik.errors.name ? (
-          <div className="error-message">{formik.errors.name}</div>
-        ) : null}
-      </div>
+    <Formik
+      initialValues={{
+        name: "",
+        lastname: "",
+        email: "",
+        password: "",
+      }}
+      validate={validate}
+      onSubmit={(values) => {
+        console.log(values)
+      }}
+    >
+      <Form className="form-container">
+        <div className="form-group">
+          <label>nombre</label>
+          <Field name="name" className="form-input" type="text" />
+          <ErrorMessage name="name" component="div" className="error-message" /> 
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="lastname">apellido</label>
-        <input
-          id="lastname"
-          type="text"
-          name="lastname"
-          onChange={formik.handleChange}
-          value={formik.values.lastname}
-          onBlur={formik.handleBlur}
-          className="form-input"
-        />
-        {formik.touched.lastname && formik.errors.lastname ? (
-          <div className="error-message">{formik.errors.lastname}</div>
-        ) : null}
-      </div>
+        <div className="form-group">
+          <label htmlFor="lastname">apellido</label>
+          <Field name="lastname" className="form-input" type="text" />
+          <ErrorMessage name="lastname" component="div" className="error-message" />
 
-      <div className="form-group">
-        <label htmlFor="email">email</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          onBlur={formik.handleBlur}
-          className="form-input"
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <div className="error-message">{formik.errors.email}</div>
-        ) : null}
-      </div>
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="password">password</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          onBlur={formik.handleBlur}
-          className="form-input"
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <div className="error-message">{formik.errors.password}</div>
-        ) : null}
-      </div>
+        <div className="form-group">
+          <label htmlFor="email">email</label>
+          <Field name="email" className="form-input" type="email" />
+          <ErrorMessage name="email" component="div" className="error-message" />
 
-      <button className="submit-btn" type="submit">
-        enviar
-      </button>
-    </form>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">password</label>
+          <Field name="password" className="form-input" type="password" />
+          <ErrorMessage name="password" component="div" className="error-message" />
+
+        </div>
+
+        <button className="submit-btn" type="submit">
+          enviar
+        </button>
+      </Form>
+      
+    </Formik>
   )
 }
 
