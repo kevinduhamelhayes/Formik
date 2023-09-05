@@ -1,6 +1,5 @@
 import "./index.css"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import TextInput from "./components/TextInput"
 
 //formik con componentes
 
@@ -45,7 +44,11 @@ function App() {
       }}
     >
       <Form className="form-container">
-        <TextInput name="nombre" label="Nombre" />
+        <div className="form-group">
+          <label>nombre</label>
+          <Field name="name" className="form-input" type="text" />
+          <ErrorMessage name="name" component="div" className="error-message" />
+        </div>
 
         <div className="form-group">
           <label htmlFor="lastname">apellido</label>
